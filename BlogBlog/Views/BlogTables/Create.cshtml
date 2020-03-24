@@ -1,0 +1,42 @@
+﻿@model BlogTable
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>New Blog Entry</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BlogHeadline" class="control-label"></label>
+                <input minlength="5" maxlength="50" asp-for="BlogHeadline" class="form-control"/>
+                <span asp-validation-for="BlogHeadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatId" class="control-label"></label>
+                <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogEntry" class="control-label"></label>
+                <textarea minlength="50" maxlength="2000" asp-for="BlogEntry" class="form-control" rows="12"></textarea>
+                <span asp-validation-for="BlogEntry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
